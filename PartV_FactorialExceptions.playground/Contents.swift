@@ -10,11 +10,14 @@ In the lecture three weeks ago, we learned about exceptions, and I made [a playg
 
 func factorial(n: Int) -> Int {
     var result = 1
+    
     for idx in 1...n {
         result *= idx
     }
+    
     return result
 }
+
 
 /*:
 ## Issues
@@ -37,7 +40,20 @@ enum FactorialError: ErrorType {
 // And here is the function for you to implement:
 
 func saferFactorial(n: Int) throws -> Int   {
-    return 1
+    
+    if n < 0 {
+        throw FactorialError.Meaningless
+    }
+    
+    if n > 20 {
+        throw FactorialError.TooLarge
+    }
+    
+    if n == 0 {
+        return 1
+    }
+    
+    return factorial(n)
 }
 
 /*:
